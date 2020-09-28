@@ -7,7 +7,7 @@
 
 #include <iomanip>
 
-// #define USE_SET // Использовать класс TSet,
+#define USE_SET // Использовать класс TSet,
                 // закоментировать, чтобы использовать битовое поле
 
 #ifndef USE_SET // Использовать класс TBitField
@@ -49,6 +49,7 @@ int main()
     }
   cout << endl;
   cout << "В первых " << n << " числах " << count << " простых" << endl;
+  system("pause");
 }
 #else
 
@@ -56,7 +57,7 @@ int main()
 
 int main()
 {
-  int n, m, k, count;
+  /*int n, m, k, count;
 
   setlocale(LC_ALL, "Russian");
   cout << "Тестирование программ поддержки множества" << endl;
@@ -88,7 +89,25 @@ int main()
         cout << endl;
     }
   cout << endl;
-  cout << "В первых " << n << " числах " << count << " простых" << endl;
+  cout << "В первых " << n << " числах " << count << " простых" << endl;*/
+	try {
+		TSet m(20);
+		cout << "Input elements:" << endl;
+		int t;
+		/*for (int i = 0; i < 11; i++)
+		{
+			cin >> t;
+			m.InsElem(t);
+		}*/
+		cin >> m;
+		cout << m;
+	}
+	catch (logic_error& e)
+	{
+		cout << e.what();
+	}
+
+  system("pause");
 }
 
 #endif

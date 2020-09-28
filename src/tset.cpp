@@ -110,16 +110,31 @@ istream &operator>>(istream &istr, TSet &s) // ввод
 {
 	int n;
 	istr >> n;
-	TSet q(n);
-	istr >> q.BitField;
-	s.BitField = q.BitField;
-	s.MaxPower = q.MaxPower;
+	TSet q(s.MaxPower);
+	char a;
+	int num;
+	istr >> a;
+	for (int i = 0; i < n; i++)
+	{
+		istr >> num;
+		q.InsElem(num);
+	}
+	s = q;
+	istr >> a;
 	return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
 	ostr << s.MaxPower << endl;
-	ostr << s.BitField;
+	ostr << "{";
+	for (int i = 0; i < s.BitField.GetLength(); i++)
+	{
+		if (s.BitField.GetBit(i)) {
+			ostr << i << " ";
+		}
+	}
+	ostr << "}";
 	return ostr;
+
 }

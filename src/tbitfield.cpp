@@ -65,7 +65,7 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 
 void TBitField::SetBit(const int n) // установить бит
 {
-	if ((n < 0) || (n >= (*this).BitLen)) throw logic_error("invalid position");
+	if ((n < 0) || (n > (*this).BitLen)) throw logic_error("invalid position");
 	TELEM mask = (*this).GetMemMask(n);
 	pMem[GetMemIndex(n)] = pMem[GetMemIndex(n)] | mask;
 }
