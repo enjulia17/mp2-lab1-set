@@ -9,7 +9,7 @@
 
 TBitField::TBitField(int len)
 {
-	if (len < 0) throw logic_error("Invalid size");
+	if (len < 0) throw runtime_error("Invalid size");
 	BitLen = len;
 	MemLen = (len / (sizeof(TELEM) * 8)) + 1;
 	pMem = new TELEM[MemLen];
@@ -65,14 +65,14 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 
 void TBitField::SetBit(const int n) // установить бит
 {
-	if ((n < 0) || (n >= (*this).BitLen)) throw logic_error("invalid position");
+	if ((n < 0) || (n >= (*this).BitLen)) throw runtime_error("invalid position");
 	TELEM mask = (*this).GetMemMask(n);
 	pMem[GetMemIndex(n)] = pMem[GetMemIndex(n)] | mask;
 }
 
 void TBitField::ClrBit(const int n) // очистить бит
 {
-	if ((n < 0) || (n >= BitLen)) throw logic_error("invalid position");
+	if ((n < 0) || (n >= BitLen)) throw runtime_error("invalid position");
 	TELEM mask = (*this).GetMemMask(n);
 	mask = ~mask;
 	pMem[GetMemIndex(n)] = pMem[GetMemIndex(n)] & mask;
@@ -80,7 +80,7 @@ void TBitField::ClrBit(const int n) // очистить бит
 
 int TBitField::GetBit(const int n) const // получить значение бита
 {
-	if (n < 0 || (n >= BitLen)) throw logic_error("Invalid index");
+	if (n < 0 || (n >= BitLen)) throw runtime_error("Invalid index");
 	TELEM mask = GetMemMask(n);
 	TELEM bit = pMem[GetMemIndex(n)];
 	bit = bit&mask;
