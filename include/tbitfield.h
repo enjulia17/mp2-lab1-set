@@ -10,11 +10,10 @@
 
 #include <iostream>
 #include <math.h>
-#include <bitset>
 
 using namespace std;
 
-using TELEM = unsigned int;
+typedef unsigned int TELEM;;
 
 class TBitField
 {
@@ -28,6 +27,7 @@ private:
 	TELEM GetMemMask(const int n) const; // битовая маска для бита n       (#О3)
 
 public:
+	TBitField() { BitLen = 0; pMem = nullptr; MemLen = 0; }
 	TBitField(int len);                //                                   (#О1)
 	TBitField(const TBitField &bf);    //                                   (#П1)
 	~TBitField();                      //                                    (#С)

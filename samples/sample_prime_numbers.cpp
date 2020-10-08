@@ -8,12 +8,12 @@
 #include <iomanip>
 #include <string>
 
-// #define USE_SET // Использовать класс TSet,
+ #define USE_SET // Использовать класс TSet,
                 // закоментировать, чтобы использовать битовое поле
 
 #ifndef USE_SET // Использовать класс TBitField
 
-/*#include "tbitfield.h"
+/#include "tbitfield.h"
 
 int main()
 {
@@ -51,13 +51,31 @@ int main()
   cout << endl;
   cout << "В первых " << n << " числах " << count << " простых" << endl;
 }
-else*/
+#else
 
 #include "tset.h"
 
-int main()
+int main() 
 {
-  /*int n, m, k, count;
+	
+
+		const int size = 5;
+		TSet set1(size), set2(size), set3(size), expSet(size);
+		// set1 = {1, 2, 4}
+		set1.InsElem(1);
+		set1.InsElem(2);
+		set1.InsElem(4);
+		// set2 = {0, 1, 2}
+		set2.InsElem(0);
+		set2.InsElem(1);
+		set2.InsElem(2);
+		set3 = set1 * set2;
+		// expSet = {1, 2}
+		expSet.InsElem(1);
+		expSet.InsElem(2);
+
+		cout << (expSet == set3);
+	}/*/*int n, m, k, count;
 
   setlocale(LC_ALL, "Russian");
   cout << "Тестирование программ поддержки множества" << endl;
@@ -111,7 +129,7 @@ int main()
 
  
 
-//Доп.задание 1: запись в файл и чтение из файла
+/*//Доп.задание 1: запись в файл и чтение из файла
 TSet m(20);
 cin >> m;
 
@@ -167,7 +185,7 @@ while (pow <= n)
 
  // system("pause");
  
-
-}	
+*/
+//}	
 
 #endif

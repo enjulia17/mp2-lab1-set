@@ -12,7 +12,7 @@ TSet::TSet(int mp) : BitField(mp), MaxPower(mp)
 }
 
 // конструктор копирования
-TSet::TSet(const TSet &s) : BitField(0)
+TSet::TSet(const TSet &s) 
 {
 
 	(*this).BitField = s.BitField;
@@ -20,7 +20,7 @@ TSet::TSet(const TSet &s) : BitField(0)
 }
 
 // конструктор преобразования типа
-TSet::TSet(const TBitField &bf) : BitField(0)
+TSet::TSet(const TBitField &bf) 
 {
 
 	(*this).BitField = bf;
@@ -73,10 +73,10 @@ int TSet::operator!=(const TSet &s) const // сравнение
 
 TSet TSet::operator+(const TSet &s) // объединение
 {
-	(this->BitField) | s.BitField;
-	if ((this->MaxPower) < s.GetMaxPower()) MaxPower = s.GetMaxPower();
-
-	return(*this);
+	TSet tempor_2(*this);
+	tempor_2.BitField = (this->BitField) | s.BitField;
+	if ((tempor_2.MaxPower) < s.GetMaxPower()) tempor_2.MaxPower = s.GetMaxPower();
+	return(tempor_2);
 }
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
@@ -93,15 +93,17 @@ TSet TSet::operator-(const int Elem) // разность с элементом
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
-	BitField & s.BitField;
-	if ((this->MaxPower) < s.GetMaxPower()) MaxPower = s.GetMaxPower();
-	return(*this);
+	TSet tempor_2(*this);
+	tempor_2.BitField = BitField & s.BitField;
+	if ((tempor_2.MaxPower) < s.GetMaxPower()) tempor_2.MaxPower = s.GetMaxPower();
+	return(tempor_2);
 }
 
 TSet TSet::operator~(void) // дополнение
 {
-	~BitField;
-	return(*this);
+	TSet tempor_2(*this);
+	tempor_2.BitField = ~tempor_2.BitField;
+	return(tempor_2);
 }
 
 // перегрузка ввода/вывода
